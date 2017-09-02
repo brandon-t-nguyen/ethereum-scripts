@@ -8,5 +8,5 @@ CUDA_GRID_SIZE_DEF=$((8192))
 
 CUDA_BLOCK_SIZE=$((CUDA_BLOCK_SIZE_DEF / 1))
 CUDA_GRID_SIZE=$((CUDA_GRID_SIZE_DEF / 1))
-ethminer    --farm-recheck 200 -RH -G -S $SERVER1 -FS $SERVER2 -O $ETHER_ADDR.$(hostname)\
+ethminer    --farm-recheck 200 -RH -U -S $SERVER1 -FS $SERVER2 -O $ETHER_ADDR.$(hostname)\
             --cuda-block-size $CUDA_BLOCK_SIZE --cuda-grid-size $CUDA_GRID_SIZE
