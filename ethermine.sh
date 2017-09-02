@@ -1,7 +1,7 @@
 #!/bin/bash
 ETHER_ADDR=0xDd9d279854C8D614d37a492192A40f678f476BC1
 SERVER1=us1.ethermine.org:4444
-SERVER2=eu1.ethermine.org:4444
+SERVER2=us2.ethermine.org:4444
 
 setx GPU_FORCE_64BIT_PTR        0
 setx GPU_MAX_HEAP_SIZE          100
