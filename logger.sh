@@ -1,6 +1,15 @@
 #!/bin/bash
-TIME_INT=2
 FILE=./log.csv
+TIME_INT=2
+
+if [ "$#" -ne 2 ]; then
+    echo "Incorrect number of arguments, provided $#"
+    echo "Format: logger.sh <log file to write to> <interval in seconds>"
+    exit 1
+fi
+
+FILE=$1
+TIME_INT=$2
 
 echo "Unix Timestamp, GPU Utilization (%), GPU Temperature (C)" | tee $FILE
 while true
