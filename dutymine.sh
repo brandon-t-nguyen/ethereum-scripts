@@ -19,7 +19,7 @@ if  [ "$#" -ge 1 ]; then
 fi
 
 if  [ "$#" -ge 2 ]; then
-    FULL_TIME=$1
+    FULL_TIME=$2
 fi
 
 ON_TIME=$((FULL_TIME * DUTY / 100))
@@ -34,9 +34,9 @@ echo "Duty cycle: $DUTY%";
 
 while true; do
     pkill ethminer
-    ethminer    --farm-recheck 200 -RH -X -S $SERVER1 -FS $SERVER2 -O $ETHER_ADDR.$(hostname) --opencl-platform 1
+    ethminer    --farm-recheck 200 -RH -X -S $SERVER1 -FS $SERVER2 -O $ETHER_ADDR.$(hostname) --opencl-platform 1 &
     sleep $ON_TIME
     pkill ethminer
-    ethminer    --farm-recheck 200 -RH -U -S $SERVER1 -FS $SERVER2 -O $ETHER_ADDR.$(hostname) 
+    ethminer    --farm-recheck 200 -RH -U -S $SERVER1 -FS $SERVER2 -O $ETHER_ADDR.$(hostname) &
     sleep $OFF_TIME
 done
