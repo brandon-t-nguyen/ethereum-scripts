@@ -25,7 +25,9 @@ fi
 ON_TIME=$((FULL_TIME * DUTY / 100))
 OFF_TIME=$((FULL_TIME - ON_TIME))
 
-
+RED="\033[0;31m"
+BLU="\033[0;34m"
+RST="\033[0m"
 
 echo "Cycle time: $FULL_TIME seconds";
 echo "On time : $ON_TIME seconds";
@@ -34,9 +36,20 @@ echo "Duty cycle: $DUTY%";
 
 while true; do
     pkill ethminer
+    echo -e "$RED"
+    echo -e "======================================"
+    echo -e "====== Heavy mining initiated  ======="
+    echo -e "======================================"
+    echo -e "$BLU"
     ethminer    --farm-recheck 200 -RH -X -S $SERVER1 -FS $SERVER2 -O $ETHER_ADDR.$(hostname) --opencl-platform 1 &
     sleep $ON_TIME
+    
     pkill ethminer
+    echo -e "$BLU"
+    echo -e "======================================"
+    echo -e "====== Light mining initiated  ======="
+    echo -e "======================================"
+    echo -e "$RST"
     ethminer    --farm-recheck 200 -RH -U -S $SERVER1 -FS $SERVER2 -O $ETHER_ADDR.$(hostname) &
     sleep $OFF_TIME
 done
